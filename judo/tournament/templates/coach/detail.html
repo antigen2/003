@@ -1,0 +1,14 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Тренер: {{ coach.short_name }}{% endblock %}
+
+{% block content %}
+    <h1 align="right">Тренер: {{ coach.short_name }}</h1>
+        <hr>
+        <h2>
+            ФИО: {{ coach.last_name }} {{ coach.first_name }} {{ coach.middle_name }}
+        </h2>
+        <p>Спортивный зал: {{ coach.gym.short_name }}</p>
+        <p>Расположен по адресу: {{ coach.gym.address }}</p>
+        <p>Организация: {{ coach.gym.organization.short_name }}</p>
+{% endblock %}

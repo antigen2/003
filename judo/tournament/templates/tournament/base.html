@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+</head>
+<body>
+<header>
+    HEADER
+</header>
+    <div class="main-content">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="menu">
+            <h2>Справочники:</h2>
+            <ul>
+                <li>
+                    <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:organization_list' %}">Организации</a></p>
+                </li>
+                <li>
+                    <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:gym_list' %}">Спортивные залы</a></p>
+                </li>
+                <li>
+                    <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:coach_list' %}">Тренеры</a></p>
+                </li>
+                <li>
+                    <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:judoka_list' %}">Спортсмены</a></p>
+                </li>
+                <li>
+                    <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:tournament_list' %}">Проведенные соревнования</a></p>
+                </li>
+            </ul>
+            <h2>Меню:</h2>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+<!--<footer>-->
+<!--    FOOTER-->
+<!--</footer>-->
+</body>
+</html>

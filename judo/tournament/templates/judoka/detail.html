@@ -1,0 +1,55 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}{{ judoka.short_name }}{% endblock %}
+
+{% block content %}
+    <h1 align="right">{{ judoka.short_name }}</h1>
+    <h3 align="right">({{ judoka.birthday }})</h3>
+        <hr>
+        <table border=0  width="100%">
+            <tr>
+                <th align="right">Рейтинг:</th>
+                <th>{{ judoka.rating }}</th>
+            </tr>
+            <tr>
+                <th align="right">Очки рейтинга:</th>
+                <th>{{ judoka.rating_points }}</th>
+            </tr>
+        </table>
+        <h2>
+            {{ judoka.last_name }} <br>
+            {{ judoka.first_name }} <br>
+            {{ judoka.middle_name }} <br>
+        </h2>
+        <p><b>Год рождения:</b> <ins>{{ judoka.birthday.year}}</ins></p>
+        <p><b>Полных лет:</b> <ins>{{ judoka.get_full_age }}</ins></p>
+        <p><b>Текущая ВК:</b>
+            <ins>
+            {% if weight_history %}
+                {{ weight_history.first.weight_class }}
+                (от {{weight_history.first.date}})
+            {% else %}
+                Не определена
+            {% endif %}
+            </ins>
+        </p>
+        <p><b>Тренер:</b> <ins>{{judoka.coach.short_name}} ({{ judoka.coach.gym.short_name }})</ins></p>
+        <br>
+        <h3 align="center">История весовых категорий</h3>
+        {% if weight_history %}
+        <table border=1  width="100%">
+            <tr>
+                <th>Весовая категория спортсмена</th>
+                <th>Дата первого выступления в этой ВК</th>
+            </tr>
+            {% for weight in weight_history %}
+            <tr>
+                <th>{{ weight.weight_class }}</th>
+                <th>{{ weight.date }}</th>
+            </tr>
+            {% endfor %}
+        {% else %}
+            Нет истории в весовых категориях.
+        {% endif %}
+        </table>
+{% endblock %}

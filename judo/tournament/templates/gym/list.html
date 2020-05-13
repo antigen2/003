@@ -1,0 +1,20 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Список спортивных залов{% endblock %}
+
+{% block content %}
+    <h1>Список спортивных залов</h1>
+    <hr>
+    {% for gym in gyms %}
+        <h2 align="right">
+            <a href="{{ gym.get_absolute_url }}">{{ gym.short_name }}</a>
+        </h2>
+        <p>{{ gym.name }}</p>
+        <p>Адрес: {{ gym.address }}</p>
+        <p>Статус: {{ gym.get_status_display }}</p>
+        <p>Организация: {{ gym.organization.short_name }}</p>
+        <hr>
+    {% endfor %}
+<!--    {% include 'tournament/pagination.html' with page=organizations %}-->
+    {% include 'tournament/pagination.html' with page=page_obj %}
+{% endblock %}

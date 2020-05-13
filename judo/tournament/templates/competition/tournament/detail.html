@@ -1,0 +1,39 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Турнир: {{ tournament.short_name }}{% endblock %}
+
+{% block content %}
+    <h1 align="right">Турнир: {{ tournament.short_name }}</h1>
+        <hr>
+        <h2>
+            Полное наименование:<br>{{ tournament.name }}
+        </h2>
+        <p>Дата проведения: {{ tournament.date }}</p>
+        <p>Количество татами: {{ tournament.number_of_tatami }}</p>
+        <hr>
+        <h3 align="center">Участники турнира:</h3>
+        {% if competitors %}
+        <table border=1 width="100%">
+            <tr>
+                <th>Спортсмен</th>
+                <th>Начисленные очки рейтинга в турнире</th>
+            </tr>
+            {% for competitor in competitors %}
+            <tr>
+                <th><a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ competitor.judoka.get_absolute_url }}">{{ competitor }}</a></th>
+                <th>{{ competitor.rating_points }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        Участников нет.
+        {% endif %}
+        <h3 align="center">Весовые категории и Группы турнира:</h3>
+        {% if tournament_groups %}
+            {% for tournament_group in tournament_groups %}
+                {{ tournament_group.weight_class }} <br>
+            {% endfor %}
+        {% else %}
+        ВК нет.
+        {% endif %}
+{% endblock %}

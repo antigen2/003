@@ -1,0 +1,20 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Список тренеров{% endblock %}
+
+{% block content %}
+    <h1>Список тренеров</h1>
+    <hr>
+    {% for coach in coaches %}
+        <h2 align="right">
+            <a href="{{ coach.get_absolute_url }}">{{ coach.short_name }}</a>
+        </h2>
+        <p>{{ coach.name }}</p>
+        <p>Спортивный зал: {{ coach.gym.short_name }}</p>
+        <p>Адрес спортивного зала: {{ coach.gym.address }}</p>
+        <p>Организация: {{ coach.gym.organization.short_name }}</p>
+        <hr>
+    {% endfor %}
+<!--    {% include 'tournament/pagination.html' with page=organizations %}-->
+    {% include 'tournament/pagination.html' with page=page_obj %}
+{% endblock %}

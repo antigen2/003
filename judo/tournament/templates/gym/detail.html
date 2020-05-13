@@ -1,0 +1,14 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Спортивный зал: {{ gym.short_name }}{% endblock %}
+
+{% block content %}
+    <h1 align="right">Спортивный зал: {{ gym.short_name }}</h1>
+
+        <h2>
+            Полное наименование: {{ gym.name }}
+        </h2>
+        <p>Расположена по адресу: {{ gym.address }}</p>
+        <p>Статус организации: {{ gym.get_status_display }}</p>
+        <p>Организация: {{ gym.organization.short_name }}</p>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/tournament.css' %}">
+</head>
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="sidebar">
+        <h2>Меню:</h2>
+        <ul>
+            <li>
+                <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:organization_list' %}">Список организаций</a></p>
+            </li>
+            <li>
+                <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{% url 'tournament:gym_list' %}">Список спортивных залов</a></p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

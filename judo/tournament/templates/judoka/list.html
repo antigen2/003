@@ -1,0 +1,20 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Список спортсменов{% endblock %}
+
+{% block content %}
+    <h1>Список спортсменов</h1>
+    <hr>
+    {% for judoka in judokas %}
+        <h2 align="right">
+            <a href="{{ judoka.get_absolute_url }}">{{ judoka.short_name }}</a>
+        </h2>
+        <p>{{ judoka.last_name }} {{ judoka.first_name }} {{ judoka.middle_name }}</p>
+        <p>Пол: {{ judoka.get_gender_display }}</p>
+        <p>Дата рождения: {{ judoka.birthday }}</p>
+        <p>Тренер: {{ judoka.coach.short_name }} ({{judoka.coach.gym.short_name}})</p>
+        <hr>
+    {% endfor %}
+<!--    {% include 'tournament/pagination.html' with page=organizations %}-->
+    {% include 'tournament/pagination.html' with page=page_obj %}
+{% endblock %}

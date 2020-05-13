@@ -1,0 +1,19 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Список проведенных соревнований{% endblock %}
+
+{% block content %}
+    <h1>Список проведенных соревнований</h1>
+    <hr>
+    {% for tournament in tournaments %}
+        <h2 align="right">
+            <a href="{{ tournament.get_absolute_url }}">{{ tournament.short_name }}</a>
+        </h2>
+        <p>{{ tournament.name }}</p>
+        <p>Дата проведения: {{ tournament.date }}</p>
+        <p>Количество татами: {{ tournament.number_of_tatami }}</p>
+        <p>Организация: {{ gym.organization.short_name }}</p>
+        <hr>
+    {% endfor %}
+    {% include 'tournament/pagination.html' with page=page_obj %}
+{% endblock %}

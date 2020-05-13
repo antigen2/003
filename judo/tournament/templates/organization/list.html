@@ -1,0 +1,19 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Список организаций{% endblock %}
+
+{% block content %}
+    <h1>Список организаций</h1>
+    <hr>
+    {% for org in organizations %}
+        <h2 align="right">
+            <a href="{{ org.get_absolute_url }}">{{ org.short_name }}</a>
+        </h2>
+        <p>{{ org.name }}</p>
+        <p>Адрес: {{ org.address }}</p>
+        <p>Статус: {{ org.get_status_display }}</p>
+        <hr>
+    {% endfor %}
+<!--    {% include 'tournament/pagination.html' with page=organizations %}-->
+    {% include 'tournament/pagination.html' with page=page_obj %}
+{% endblock %}

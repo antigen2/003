@@ -1,0 +1,13 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Организация: {{ organization.short_name }}{% endblock %}
+
+{% block content %}
+    <h1 align="right">Организация: {{ organization.short_name }}</h1>
+        <hr>
+        <h2>
+            Полное наименование: {{ organization.name }}
+        </h2>
+        <p>Расположена по адресу: {{ organization.address }}</p>
+        <p>Статус организации: {{ organization.get_status_display }}</p>
+{% endblock %}
